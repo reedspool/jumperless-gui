@@ -1,3 +1,9 @@
+// These are the variables from the setup section in the colab notebook
+let baud_rate = 115200;
+let terminal_height_in_char = 48;
+let terminal_width_in_char = 160;
+let term_h = terminal_height_in_char;
+let term_w = terminal_width_in_char;
 // This is the JavaScript extracted from the original python
     if ('serial' in navigator) {
       const scriptElement = document.createElement("script");
@@ -468,13 +474,13 @@
         connectDisconnectButton.style.backgroundColor = "#f44336"; // Red color
 
 
-        await port.open({ baudRate: {baud_rate} });
+        await port.open({ baudRate: baud_rate });
 
         if (term === undefined) {
-          term = new Terminal({ rows: {term_h}, cols: {term_w} }); // Doubled rows and cols 48 & 160
+          term = new Terminal({ rows: term_h, cols: term_w }); // Doubled rows and cols 48 & 160
           term.open(terminalDiv);
         } else {
-          term.resize({term_w}, {term_h}); // Resize existing terminal
+          term.resize(term_w, term_h); // Resize existing terminal
         }
         term.clear();
         writer = port.writable.getWriter();
